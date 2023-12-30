@@ -10,39 +10,56 @@ const routes = [
     name: "home",
     component: HomeView,
   },
-  // {
-  //   path: "/employee",
-  //   name: "employee",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/EmployeeView.vue"),
-  // },
-  // {
-  //   path: "/employee/employee-detail-action",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_action_view/EmployeeCreateView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/employee/employee-detail-action/:id",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_action_view/EmployeeCreateView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/employee/employee-detail-view/:id",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_detail_view/EmployeeInfoView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/manage-license",
-  //   name: "manage-license",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/ManagementView.vue"),
-  // },
+
+  //noicom
+
+  {
+    path: "/rice-cooker",
+    name: "noicom",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/NoiComView.vue"),
+  },
+
+  {
+    path: "/noicom/noicom-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/noicom/action/NoiComActionView.vue"
+      ),
+  },
+  //matgiat
+
+  {
+    path: "/washing-machine",
+    name: "maygiat",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MayGiatView.vue"),
+  },
+
+  {
+    path: "/maygiat/maygiat-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/maygiat/action/MayGiatActionView.vue"
+      ),
+  },
+  //dieuhoa
+
+  {
+    path: "/air-conditioner",
+    name: "dieuhoa",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/DieuHoaView.vue"),
+  },
+
+  {
+    path: "/dieuhoa/dieuhoa-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/dieuhoa/action/DieuHoaActionView.vue"
+      ),
+  },
+  //televison
   {
     path: "/televison",
     name: "televison",

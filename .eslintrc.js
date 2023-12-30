@@ -18,7 +18,7 @@ module.exports = {
       "error",
       {
         endOfLine: "auto",
-      },
+      }, 
     ],
     "vue/no-multiple-template-root": 0,
   },

@@ -10,39 +10,105 @@ const routes = [
     name: "home",
     component: HomeView,
   },
-  // {
-  //   path: "/employee",
-  //   name: "employee",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/EmployeeView.vue"),
-  // },
-  // {
-  //   path: "/employee/employee-detail-action",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_action_view/EmployeeCreateView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/employee/employee-detail-action/:id",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_action_view/EmployeeCreateView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/employee/employee-detail-view/:id",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "about" */ "../views/employee_detail_view/EmployeeInfoView.vue"
-  //     ),
-  // },
-  // {
-  //   path: "/manage-license",
-  //   name: "manage-license",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/ManagementView.vue"),
-  // },
+
+  //noicom
+
+  {
+    path: "/rice-cooker",
+    name: "rice-cooker",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/NoiComView.vue"),
+  },
+
+  {
+    path: "/rice-cooker/rice-cooker-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/rice-cooker/action/NoiComActionView.vue"
+      ),
+  },
+  {
+    path: "/rice-cooker/rice-cooker-detail-action/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/rice-cooker/action/NoiComActionView.vue"
+      ),
+  },
+  {
+    path: "/rice-cooker/rice-cooker-detail-view/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/rice-cooker/detail/RiceCookerDetailView.vue"
+      ),
+  },
+
+  //matgiat
+
+  {
+    path: "/washing-machine",
+    name: "washing-machine",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MayGiatView.vue"),
+  },
+
+  {
+    path: "/washing-machine/washing-machine-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/washing-machine/action/MayGiatActionView.vue"
+      ),
+  },
+  {
+    path: "/washing-machine/washing-machine-detail-action/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/washing-machine/action/MayGiatActionView.vue"
+      ),
+  },
+  {
+    path: "/washing-machine/washing-machine-detail-view/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/washing-machine/detail/WashingMachineDetailView.vue"
+      ),
+  },
+  //dieuhoa
+
+  {
+    path: "/air-conditioner",
+    name: "air-conditioner",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/DieuHoaView.vue"),
+  },
+
+  {
+    path: "/air-conditioner/air-conditioner-detail-action",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/air-conditioner/action/DieuHoaActionView.vue"
+      ),
+  },
+  {
+    path: "/air-conditioner/air-conditioner-detail-action/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/air-conditioner/action/DieuHoaActionView.vue"
+      ),
+  },
+  {
+    path: "/air-conditioner/air-conditioner-detail-view/:id",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/air-conditioner/detail/AirConditionerDetailView.vue"
+      ),
+  },
+  //televison
+  {
+    path: "/login",
+    name: "login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/LoginView.vue"),
+  },
   {
     path: "/televison",
     name: "televison",

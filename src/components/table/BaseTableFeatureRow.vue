@@ -12,22 +12,13 @@
           :debounceTime="500"
           :tooltip="placeholder"
         />
-        <!-- <BaseDropDown
-          :placeholder="ACCOUNTING_TEXT.Placeholder.Department"
-          type="treeview"
-          model="Department"
-          :dropdownList="DEPARTMENTS"
-          :defaultValue="searchDepartment"
-          @updateField="updateDepartmentSearch"
-          :width="320"
-        /> -->
-        <div @click="vueExportExcel">
+        <!-- <div @click="vueExportExcel">
           <BaseButton
             :text="ACCOUNTING_TEXT.words.export"
             icon="export-icon"
             type="default"
           />
-        </div>
+        </div> -->
       </div>
 
       <div v-if="selectedIds.length != 0" style="display: flex; gap: 10px">
@@ -40,13 +31,13 @@
             >Bỏ chọn</span
           >
         </div>
-        <div @click="vueExportExcel">
+        <!-- <div @click="vueExportExcel">
           <BaseButton
             :text="ACCOUNTING_TEXT.words.export"
             icon="export-icon"
             type="default"
           />
-        </div>
+        </div> -->
         <div @click="deleteSelectedRows">
           <BaseButton
             type="default"
@@ -76,9 +67,9 @@
           :showArrowIcon="false"
         />
       </div>
-      <div @click="openFilterContainer">
+      <!-- <div @click="openFilterContainer">
         <BaseButton icon="filter-icon" type="default" :width="40" />
-      </div>
+      </div> -->
       <div
         class="setup_btn"
         @click="(event) => $store.dispatch('toggleShowingSetup', event)"

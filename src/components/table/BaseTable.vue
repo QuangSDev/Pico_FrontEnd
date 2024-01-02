@@ -65,7 +65,9 @@
           #[`${header.model}-cell`]="{ data }"
         >
           <div :style="{ textAlignment: header.alignment }" :key="header.model">
-            <span>{{ cellFormat(data.value, header.model) }}</span>
+            <span>{{
+              cellFormat(data.value, header.model, header.FieldType)
+            }}</span>
           </div>
         </template>
 
@@ -332,8 +334,8 @@ export default {
      * @param {*} model - model
      * Author: Lê Minh Quang (19/08/2023)
      */
-    cellFormat(cellInfo, model) {
-      return cellFormatting(cellInfo, model) || cellInfo;
+    cellFormat(cellInfo, model, type) {
+      return cellFormatting(cellInfo, model, type) || cellInfo;
     },
     /**
      * Feature: Thay đổi số dòng trên trang
@@ -375,7 +377,9 @@ export default {
      */
     showDialog(data) {
       this.$store.dispatch("showDialog", {
-        dialogText: ACCOUNTING_TEXT.Warning.DeleteEmployee(data.data.FullName),
+        dialogText: ACCOUNTING_TEXT.Warning.DeleteEmployee(
+          data.data.ProductName
+        ),
         dialogTitle: ACCOUNTING_TEXT.WarningTitle.DeleteEmployee,
         dialogType: "warning",
         dialogID: 1,
@@ -389,7 +393,7 @@ export default {
     showDeleteMultipleDialog() {
       this.$store.dispatch("showDialog", {
         dialogText: ACCOUNTING_TEXT.Warning.DeleteManyEmployee(
-          this.selectedIds.length
+          this.selectedIds.length``
         ),
         dialogTitle: ACCOUNTING_TEXT.WarningTitle.DeleteEmployee,
         dialogType: "warning",

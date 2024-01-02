@@ -80,6 +80,16 @@ export const getGroupConfigs = async () => {
   return SAMPLE_GROUPS;
 };
 
+export const loginAsync = async (data) => {
+  const res = await axios.post(`${baseUrl}/user/login`, data);
+  return res;
+};
+
+export const registerAsync = async (data) => {
+  const res = await axios.post(`${baseUrl}/user/register`, data);
+  return res;
+};
+
 /**
  * Feature: Tạo excel
  * @returns ID bản ghi mới

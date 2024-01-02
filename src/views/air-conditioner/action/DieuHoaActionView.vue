@@ -38,8 +38,8 @@
       :formMode="
         $route.params.id ? ENUMS.FORM_MODE.UPDATE : ENUMS.FORM_MODE.ADD
       "
-      :tableName="'Televison'"
-      modelRoute="televison"
+      :tableName="'AirConditioner'"
+      modelRoute="air-conditioner"
       :isSubmitted="isSubmitted"
       :isSubmitted2="isSubmitted2"
       :isClose="isClose"
@@ -47,12 +47,12 @@
   </div>
 </template>
 <script>
-import BaseForm from "./BaseForm.vue";
+import BaseForm from "../../televison/action/BaseForm";
 import { ENUMS } from "@/helpers/enums";
 import { ACCOUNTING_TEXT } from "@/helpers/resources";
 import router from "@/router";
 export default {
-  name: "TelevisonActionView",
+  name: "DieuHoaActionView",
   components: { BaseForm },
   data() {
     return {

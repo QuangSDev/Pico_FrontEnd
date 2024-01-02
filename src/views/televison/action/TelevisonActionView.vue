@@ -39,6 +39,7 @@
         $route.params.id ? ENUMS.FORM_MODE.UPDATE : ENUMS.FORM_MODE.ADD
       "
       :tableName="'Televison'"
+      modelRoute="televison"
       :isSubmitted="isSubmitted"
       :isSubmitted2="isSubmitted2"
       :isClose="isClose"

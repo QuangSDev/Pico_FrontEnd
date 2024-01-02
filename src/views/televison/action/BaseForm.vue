@@ -29,7 +29,11 @@
                 :label="groupField.Label"
                 :model="groupField.FieldName"
                 type="default"
-                :dropdownList="groupField.DropdownList"
+                :dropdownList="
+                  groupField.DropdownList.filter(
+                    (item) => item.DropdownListID == groupField.DropdownListID
+                  )
+                "
                 :defaultValue="formData?.[groupField.FieldName]"
                 @updateField="updateField"
               />
@@ -57,7 +61,11 @@
                 :label="groupField.Label"
                 :model="groupField.FieldName"
                 type="default"
-                :dropdownList="groupField.DropdownList"
+                :dropdownList="
+                  groupField.DropdownList.filter(
+                    (item) => item.DropdownListID == groupField.DropdownListID
+                  )
+                "
                 :defaultValue="formData?.[groupField.FieldName]"
                 @updateField="updateField"
               />
@@ -95,7 +103,6 @@ import {
   NATIONS,
   PROVINCES,
   showToast,
-  DEFAULT_FORM_VALUES,
 } from "@/helpers/constants";
 import { ENUMS } from "@/helpers/enums";
 import { ACCOUNTING_TEXT } from "@/helpers/resources";
@@ -108,12 +115,18 @@ import {
 
 export default {
   name: "BaseForm",
-  props: ["isSubmitted", "isSubmitted2", "formMode", "isClose", "tableName"],
+  props: [
+    "isSubmitted",
+    "isSubmitted2",
+    "formMode",
+    "isClose",
+    "tableName",
+    "modelRoute",
+  ],
   components: {},
   data() {
     return {
-      formData:
-        this.$props.formMode == ENUMS.FORM_MODE.ADD ? DEFAULT_FORM_VALUES : {},
+      formData: {},
       ENUMS,
       EMPLOYEE_TYPES,
       POSITIONS,
@@ -141,7 +154,7 @@ export default {
       this.isUpdatedChange = false;
       const recordInfo = await getRecordById(
         this.$route.params.id,
-        "Televison"
+        this.tableName
       );
       this.formData = recordInfo;
       await this.$nextTick();
@@ -285,9 +298,7 @@ export default {
         if (this.formMode == ENUMS.FORM_MODE.ADD) {
           var originalForm = Object.assign({}, this.formData);
           delete originalForm?.["EmployeeCode"];
-          if (
-            JSON.stringify(originalForm) != JSON.stringify(DEFAULT_FORM_VALUES)
-          ) {
+          if (JSON.stringify(originalForm) != JSON.stringify({})) {
             this.showChangeDialog();
           } else {
             this.$router.replace(`/${this.tableName.toLowerCase()}`);
@@ -315,7 +326,7 @@ export default {
             this.$store.dispatch("toggleLoading");
             await createRecord(this.formData, this.tableName);
             this.$router.push(
-              `/${this.tableName.toLowerCase()}/${this.tableName.toLowerCase()}-detail-view/${
+              `/${this.modelRoute.toLowerCase()}/${this.modelRoute.toLowerCase()}-detail-view/${
                 this.formData.ID
               }`
             );
@@ -333,7 +344,7 @@ export default {
               this.$route.params.id
             );
             this.$router.replace(
-              `/${this.tableName.toLowerCase()}/${this.tableName.toLowerCase()}-detail-view/${
+              `/${this.modelRoute.toLowerCase()}/${this.modelRoute.toLowerCase()}-detail-view/${
                 this.formData.ID
               }`
             );
@@ -359,7 +370,7 @@ export default {
             this.flag = false;
             this.errorList = {};
             const newCode = await getNewEmployeeCode();
-            this.formData = { ...DEFAULT_FORM_VALUES, EmployeeCode: newCode };
+            this.formData = { ...{}, EmployeeCode: newCode };
             await this.$nextTick();
             this.flag = true;
             showToast(ACCOUNTING_TEXT.words.CreateEmployeeSuccess, "success");
@@ -379,13 +390,13 @@ export default {
             this.flag = false;
             this.errorList = {};
             const newCode = await getNewEmployeeCode();
-            this.formData = { ...DEFAULT_FORM_VALUES, EmployeeCode: newCode };
+            this.formData = { ...{}, EmployeeCode: newCode };
             await this.$nextTick();
             this.flag = true;
             this.$store.dispatch("toggleLoading");
             showToast(ACCOUNTING_TEXT.words.UpdateEmployeeSuccess, "success");
             this.$router.replace(
-              `/${this.tableName.toLowerCase()}/${this.tableName.toLowerCase()}-detail-action`
+              `/${this.modelRoute.toLowerCase()}/${this.modelRoute.toLowerCase()}-detail-action`
             );
           } catch (error) {
             handleError(error);
@@ -402,19 +413,17 @@ export default {
       if (this.formMode == ENUMS.FORM_MODE.ADD) {
         var originalForm = Object.assign({}, this.formData);
         delete originalForm?.["EmployeeCode"];
-        if (
-          JSON.stringify(originalForm) != JSON.stringify(DEFAULT_FORM_VALUES)
-        ) {
+        if (JSON.stringify(originalForm) != JSON.stringify({})) {
           this.showChangeDialog();
         } else {
-          this.$router.replace(`/${this.tableName.toLowerCase()}`);
+          this.$router.replace(`/${this.modelRoute.toLowerCase()}`);
         }
       }
       if (this.formMode == ENUMS.FORM_MODE.UPDATE) {
         if (this.isUpdatedChange) {
           this.showChangeDialog();
         } else {
-          this.$router.replace(`/${this.tableName.toLowerCase()}`);
+          this.$router.replace(`/${this.modelRoute.toLowerCase()}`);
         }
       }
     },

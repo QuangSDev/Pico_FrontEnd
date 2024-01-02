@@ -83,8 +83,8 @@ export const ACCOUNTING_TEXT = {
     EmployeeInformation: "Thông tin người nộp thuế",
     StopUsing: "Ngừng sử dụng",
     Import: "Nhập khẩu",
-    CreateEmployeeSuccess: "Thêm nhân viên thành công!",
-    UpdateEmployeeSuccess: "Cập nhật viên thành công!",
+    CreateEmployeeSuccess: "Thêm sản phẩm thành công!",
+    UpdateEmployeeSuccess: "Cập nhật sảm phẩm thành công!",
     NoDataText: "Không có dữ liệu hợp lệ",
     SaveChanges: "Lưu lại những thay đổi?",
     IsWorking: "Đang làm việc",
@@ -147,7 +147,7 @@ export const ACCOUNTING_TEXT = {
     DeleteFamilyInfo:
       "Bạn có chắc chắn xóa thông tin gia đình này khỏi danh sách không?",
     DeleteManyEmployee: (total) =>
-      `Bạn có chắc chắn muốn xóa <b>(${total})</b> người nộp thuế vào Thùng rác?`,
+      `Bạn có chắc chắn muốn xóa <b>(${total})</b> sản phẩm vào Thùng rác?`,
     DeleteEmployee: (name) =>
       `Bạn có chắc chắn muốn xóa bản ghi <b>${name}</b>?`,
   },

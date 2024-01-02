@@ -4,7 +4,7 @@
   >
     <div class="main-content__header">
       <div class="main-content__header--left">
-        <div @click="$router.replace('/televison')">
+        <div @click="$router.replace('/washing-machine')">
           <BaseButton icon="goback-icon" type="icon" />
         </div>
         <div class="main-content__title">Thông tin sản phẩm</div>
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <BaseInfoForm :recordInfo="recordInfo" tableName="Televison" />
+    <BaseInfoForm :recordInfo="recordInfo" tableName="WashingMachine" />
     <BaseDialog
       :id="3"
       @cancelAction="$store.dispatch('clearDialog')"
@@ -33,13 +33,13 @@
   </div>
 </template>
 <script>
-import BaseInfoForm from "./BaseInfoForm.vue";
+import BaseInfoForm from "../../televison/detail/BaseInfoForm.vue";
 import { getRecordById, deleteRecordAsync } from "@/helpers/api";
 import { handleError, showToast } from "@/helpers/constants";
 import { mapState } from "vuex";
 import { ACCOUNTING_TEXT } from "@/helpers/resources";
 export default {
-  name: "TelevisonDetailView",
+  name: "WashingMachineDetailView",
   components: { BaseInfoForm },
   computed: {
     ...mapState(["tableHeaders", "filterObj"]),
@@ -51,7 +51,10 @@ export default {
     };
   },
   async mounted() {
-    const recordInfo = await getRecordById(this.$route.params.id, "Televison");
+    const recordInfo = await getRecordById(
+      this.$route.params.id,
+      "WashingMachine"
+    );
     document.title = `Thông tin sản phẩm ${recordInfo.ProductName}`;
     this.recordInfo = recordInfo;
   },
@@ -65,11 +68,11 @@ export default {
       try {
         var id = this.$route.params.id;
         this.$store.dispatch("toggleLoading");
-        await deleteRecordAsync(id, "Televison");
+        await deleteRecordAsync(id, "WashingMachine");
         this.$store.dispatch("toggleLoading");
         showToast(ACCOUNTING_TEXT.Message.DeleteEmployeeSuccess, "success");
         this.$store.dispatch("clearDialog");
-        this.$router.replace(`/televison`);
+        this.$router.replace(`/washing-machine`);
       } catch (error) {
         handleError(error);
       }
@@ -94,7 +97,9 @@ export default {
        */
     goToEdit() {
       var id = this.$route.params.id;
-      this.$router.replace(`/televison/televison-detail-action/${id}`);
+      this.$router.replace(
+        `/washing-machine/washing-machine-detail-action/${id}`
+      );
     },
   },
 };

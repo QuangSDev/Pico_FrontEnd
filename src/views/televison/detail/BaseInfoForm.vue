@@ -1,28 +1,5 @@
 <template>
   <div class="form-wrapper">
-    <!-- <div class="tablist">
-      <div
-        class="tab-item"
-        :class="{ activated: currentSection == 'general-info' }"
-        @click="scrollToSection('general-info')"
-      >
-        {{ ACCOUNTING_TEXT.words.GeneralInformation }}
-      </div>
-      <div
-        class="tab-item"
-        :class="{ activated: currentSection == 'work-info' }"
-        @click="scrollToSection('work-info')"
-      >
-        {{ ACCOUNTING_TEXT.words.WorkInformation }}
-      </div>
-      <div
-        class="tab-item"
-        :class="{ activated: currentSection == 'family-info' }"
-        @click="scrollToSection('family-info')"
-      >
-        {{ ACCOUNTING_TEXT.words.FamilyInfomartion }}
-      </div>
-    </div> -->
     <div class="form">
       <div v-for="group in groupConfigs" :key="group.GroupID">
         <div class="form-header-title">
@@ -33,36 +10,53 @@
           <div class="col pr-16">
             <template v-for="groupField in group.GroupFields">
               <BaseTextField
-                v-if="groupField.Column == 1"
+                v-if="groupField.FieldType == 1 && groupField.Column == 1"
                 :key="groupField.GroupFieldID"
                 :label="groupField.Label"
                 type="settled"
-                :required="groupField.IsRequired"
                 :placeholder="groupField.Placeholder"
                 :errorText="errorList?.[groupField.FieldName]"
                 :model="groupField.FieldName"
-                @updateField="updateField"
-                @clearErrorText="clearErrorText"
                 :defaultValue="recordInfo?.[groupField.FieldName]"
                 :maxLength="groupField.MaxLength"
+              />
+              <BaseTextField
+                v-if="groupField.FieldType == 2 && groupField.Column == 1"
+                :key="groupField.GroupFieldID"
+                :label="groupField.Label"
+                :model="groupField.FieldName"
+                type="settled"
+                :defaultValue="
+                  SAMPLE_DROPDOWN_OPTIONS.filter(
+                    (x) => x.ID == recordInfo?.[groupField.FieldName]
+                  )?.[0]?.Name
+                "
               />
             </template>
           </div>
           <div class="col pr-16">
             <template v-for="groupField in group.GroupFields">
               <BaseTextField
-                v-if="groupField.Column == 2"
+                v-if="groupField.FieldType == 1 && groupField.Column == 2"
                 :key="groupField.GroupFieldID"
                 :label="groupField.Label"
                 type="settled"
-                :required="groupField.IsRequired"
                 :placeholder="groupField.Placeholder"
                 :errorText="errorList?.[groupField.FieldName]"
                 :model="groupField.FieldName"
-                @updateField="updateField"
-                @clearErrorText="clearErrorText"
                 :defaultValue="recordInfo?.[groupField.FieldName]"
-                :maxLength="groupField.MaxLength"
+              />
+              <BaseTextField
+                v-if="groupField.FieldType == 2 && groupField.Column == 2"
+                :key="groupField.GroupFieldID"
+                :label="groupField.Label"
+                :model="groupField.FieldName"
+                type="settled"
+                :defaultValue="
+                  SAMPLE_DROPDOWN_OPTIONS.filter(
+                    (x) => x.ID == recordInfo?.[groupField.FieldName]
+                  )?.[0]?.Name
+                "
               />
             </template>
           </div>
@@ -74,10 +68,12 @@
 <script>
 import { cellFormatting } from "@/helpers/constants";
 import { ACCOUNTING_TEXT } from "@/helpers/resources";
+import { SAMPLE_DROPDOWN_OPTIONS } from "@/helpers/sampleDropdownListOptions";
 import { getGroupConfigs, getRecordById } from "@/helpers/api";
 import { ENUMS } from "@/helpers/enums";
 export default {
   name: "BaseInfoForm",
+  props: ["tableName"],
   data() {
     return {
       isPopupVisible: false,
@@ -85,13 +81,17 @@ export default {
       ACCOUNTING_TEXT,
       groupConfigs: [],
       recordInfo: {},
+      SAMPLE_DROPDOWN_OPTIONS,
     };
   },
 
   async mounted() {
     const groupConfigs = await getGroupConfigs();
     this.groupConfigs = groupConfigs;
-    const recordInfo = await getRecordById(this.$route.params.id, "Televison");
+    const recordInfo = await getRecordById(
+      this.$route.params.id,
+      this.tableName
+    );
     this.recordInfo = recordInfo;
   },
 

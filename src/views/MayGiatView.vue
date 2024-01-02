@@ -9,9 +9,9 @@
       </div>
     </div>
     <BaseTable
-      detailRoute="/maygiat/maygiat-detail-action"
-      detailViewRoute="/maygiat/maygiat-detail-view"
-      tableName="MayGiat"
+      detailRoute="/washing-machine/washing-machine-detail-action"
+      detailViewRoute="/washing-machine/washing-machine-detail-view"
+      tableName="WashingMachine"
       placeholder="Tìm kiếm theo mã, tên sản phẩm"
       keyExpr="ID"
     />
@@ -32,7 +32,7 @@ export default {
   },
 
   mounted() {
-    document.title = ACCOUNTING_TEXT.words.MayGiatViewTitle;
+    document.title = "Quản lý mặt hàng máy giặt";
     this.$store.dispatch(
       "updateTableHeaders",
       localStorage.getItem("tableHeaders")

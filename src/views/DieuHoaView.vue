@@ -9,9 +9,9 @@
       </div>
     </div>
     <BaseTable
-      detailRoute="/dieuhoa/dieuhoa-detail-action"
-      detailViewRoute="/dieuhoa/dieuhoa-detail-view"
-      tableName="DieuHoa"
+      detailRoute="/air-conditioner/air-conditioner-detail-action"
+      detailViewRoute="/air-conditioner/air-conditioner-detail-view"
+      tableName="AirConditioner"
       placeholder="Tìm kiếm theo mã, tên sản phẩm"
       keyExpr="ID"
     />
@@ -32,7 +32,7 @@ export default {
   },
 
   mounted() {
-    document.title = ACCOUNTING_TEXT.words.dieuhoaViewTitle;
+    document.title = "Quản lý mặt hàng điều hòa";
     this.$store.dispatch(
       "updateTableHeaders",
       localStorage.getItem("tableHeaders")

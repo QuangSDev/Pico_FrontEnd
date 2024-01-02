@@ -27,7 +27,7 @@ export const SAMPLE_FIELDS = [
   {
     GroupFieldID: 2,
     Label: "Hãng sản phẩm",
-    FieldName: "ProductType",
+    FieldName: "ProductBrand",
     FieldType: FIELD_TYPES.DROPDOWN,
     Column: 1,
     Placeholder: "",
@@ -58,6 +58,8 @@ export const SAMPLE_FIELDS = [
     FieldType: FIELD_TYPES.DROPDOWN,
     Column: 1,
     Placeholder: "",
+    DropdownListID: 2,
+    DropdownList: SAMPLE_DROPDOWN_OPTIONS,
   },
   {
     GroupFieldID: 6,

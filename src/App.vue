@@ -28,13 +28,16 @@
         </div>
       </template>
     </DxToast>
-    <TheNavbar />
-    <div class="content-container">
+    <TheNavbar v-if="!$route.path.includes('login')" />
+    <div class="content-container" v-if="!$route.path.includes('login')">
       <TheSidebar />
 
       <div class="main-content">
         <router-view></router-view>
       </div>
+    </div>
+    <div v-else style="position: relative; height: 100%">
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -44,6 +47,7 @@ import TheSidebar from "@/components/layout/TheSidebar.vue";
 import { DxToast } from "devextreme-vue";
 import { mapState } from "vuex";
 import DraggableContainer from "./components/draggable/DraggableContainer.vue";
+import router from "./router";
 export default {
   components: {
     TheSidebar,
@@ -60,6 +64,19 @@ export default {
       "isLoading",
       "toastType",
     ]),
+  },
+  beforeCreate() {
+    const isLogged = localStorage.getItem("isLogged");
+    if (!isLogged) {
+      if (router.currentRoute.name != "login") {
+        router.push("/login");
+      }
+    } else {
+      console.log("logged");
+      if (router.currentRoute.name == "login") {
+        router.push("/home");
+      }
+    }
   },
 };
 </script>

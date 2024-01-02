@@ -38,10 +38,11 @@
       :formMode="
         $route.params.id ? ENUMS.FORM_MODE.UPDATE : ENUMS.FORM_MODE.ADD
       "
-      :tableName="'MayGiat'"
+      :tableName="'WashingMachine'"
       :isSubmitted="isSubmitted"
       :isSubmitted2="isSubmitted2"
       :isClose="isClose"
+      modelRoute="washing-machine"
     />
   </div>
 </template>

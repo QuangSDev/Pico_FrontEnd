@@ -9,9 +9,9 @@
       </div>
     </div>
     <BaseTable
-      detailRoute="/noicom/noicom-detail-action"
-      detailViewRoute="/noicom/noicom-detail-view"
-      tableName="NoiCom"
+      detailRoute="/rice-cooker/rice-cooker-detail-action"
+      detailViewRoute="/rice-cooker/rice-cooker-detail-view"
+      tableName="RiceCooker"
       placeholder="Tìm kiếm theo mã, tên sản phẩm"
       keyExpr="ID"
     />
@@ -32,7 +32,7 @@ export default {
   },
 
   mounted() {
-    document.title = ACCOUNTING_TEXT.words.NoiComViewTitle;
+    document.title = "Quản lý mặt hàng nồi cơm";
     this.$store.dispatch(
       "updateTableHeaders",
       localStorage.getItem("tableHeaders")

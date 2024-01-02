@@ -9,7 +9,7 @@
       v-tooltip="tooltip"
     >
       <DxTextBox
-        v-if="type != 'settled'"
+        v-if="type != 'settled' && type != 'password'"
         :placeholder="placeholder"
         :width="width"
         :disabled="disabled"
@@ -24,6 +24,22 @@
       <div class="textfield--settled" v-if="type == 'settled'">
         {{ defaultValue == null ? "-" : defaultValue }}
       </div>
+
+      <DxTextBox
+        v-if="type == 'password'"
+        :placeholder="placeholder"
+        :width="width"
+        :disabled="disabled"
+        :onInput="onValueChanged"
+        :value="defaultValue"
+        :onFocusIn="handleFocus"
+        :onFocusOut="handleFocusOut"
+        :max-length="maxLength"
+        type="password"
+        :showClearButton="true"
+        mode="password"
+      />
+
       <div class="error-text" v-if="errorText">{{ errorText }}</div>
     </div>
   </div>
@@ -70,12 +86,12 @@ export default {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$emit("updateField", {
-            [this.$props.model]: event.event.currentTarget.value.trim(),
+            [this.$props.model]: event.event.currentTarget.value?.trim() || "",
           });
         }, this.debounceTime);
       } else {
         this.$emit("updateField", {
-          [this.$props.model]: event.event.currentTarget.value.trim(),
+          [this.$props.model]: event.event.currentTarget.value?.trim() || "",
         });
       }
       this.$emit("validateOnInput");
